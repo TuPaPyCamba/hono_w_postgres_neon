@@ -1,15 +1,26 @@
-import { serve } from '@hono/node-server'
-import { Hono } from 'hono'
+import { serve } from "@hono/node-server";
+import { Hono } from "hono";
 
-const app = new Hono()
+// Routes
+import usersRouter from "./routes/users/users.routes.js";
 
-app.get('/', (c) => {
-  return c.text('Hello Hono!')
-})
+const app = new Hono();
 
-serve({
-  fetch: app.fetch,
-  port: 3000
-}, (info) => {
-  console.log(`Server is running on http://localhost:${info.port}`)
-})
+app.route("/users", usersRouter);
+
+// TODO: More routes
+// app.route("/route", Router);
+// app.route("/route", Router);
+// app.route("/route", Router);
+// app.route("/route", Router);
+// app.route("/route", Router);
+
+serve(
+  {
+    fetch: app.fetch,
+    port: 3000,
+  },
+  (info) => {
+    console.log(`Server is running on http://localhost:${info.port}`);
+  }
+);
