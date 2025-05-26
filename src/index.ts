@@ -1,5 +1,6 @@
 import { serve } from "@hono/node-server";
 import { Hono } from "hono";
+import "dotenv/config";
 
 // Routes
 import usersRouter from "./routes/users/users.routes.js";
